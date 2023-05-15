@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.CommandBindings>
-        <CommandBinding Command="ApplicationCommands.Open" CanExecute="Open_CanExecute" Executed="Open_Executed" />
         <CommandBinding Command="MediaCommands.Play" CanExecute="Play_CanExecute" Executed="Play_Executed" />
         <CommandBinding Command="MediaCommands.Pause" CanExecute="Pause_CanExecute" Executed="Pause_Executed" />
         <CommandBinding Command="MediaCommands.Stop" CanExecute="Stop_CanExecute" Executed="Stop_Executed" />
@@ -19,9 +18,16 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <ToolBar Margin="0,0,0,10">
-            <Button Command="ApplicationCommands.Open">
-                <Image Source="C:\Users\nolfm\Desktop\oop\project\open.png" Height="36" Width="30" />
-            </Button>
+            <ListBox Width="340" Name="listBox" Height="157" SelectionChanged="ListBox_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="C:\Users\nolfm\Desktop\oop\project\music.png" Height="24" Width="24" />
+                            <TextBlock Text="{Binding}" Margin="5,0,0,0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <Separator />
             <Button Command="MediaCommands.Play">
                 <Image Source="C:\Users\nolfm\Desktop\oop\project\play.png" Height="50" Width="24"/>
@@ -32,6 +38,7 @@
             <Button Command="MediaCommands.Stop">
                 <Image Source="C:\Users\nolfm\Desktop\oop\project\stop1.png" Height="114" Width="34"/>
             </Button>
+            <Label Content="I am a ..." Name="lblWhatAreYou" Height="26"/>
         </ToolBar>
 
         <MediaElement Name="mePlayer" Grid.Row="1" LoadedBehavior="Manual" />
